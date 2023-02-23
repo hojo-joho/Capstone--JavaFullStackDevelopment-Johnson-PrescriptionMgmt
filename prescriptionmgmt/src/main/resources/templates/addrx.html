@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<title>Manage Rx</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+</head>
+<body>
+	<header class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" th:href="@{/home}">Home</a> 
+					<a class="nav-item nav-link" th:href="@{/pharmacy}">Pharmacy</a> 
+					<a class="nav-item nav-link active"	th:href="@{/addrx}">Add Prescription</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+<div class="row justify-content-md-center">
+
+		<div class="col">
+		<p class="error" th:if="${error}">Please fill out all fields</p>
+		<form role="form" th:action="@{/addrx/save}" method="post" th:object="${medication}">
+		<input type="hidden" th:field="*{id}">
+		<table>
+					<tr>
+						<td><label for="medicationName">Medication Name</label> </td>
+						</tr>
+					<tr>
+						<td><input name="medicationName" class="form-control" type="text" th:field="*{medicationName}" />
+					</tr>
+					<tr>
+						<td><label for="daysSupply">Days Supply</label>	</td>
+						</tr>
+					<tr>
+						<td> <input name="daysSupply" class="form-control" type="text" th:field="*{daysSupply}" /> </td>
+					</tr>
+					<tr>
+						<td><label for="refillDate">Refill Date</label></td>
+						</tr>
+					<tr>
+						<td><input class="form-control" type="text" name="refillDate" th:field="*{refillDate}" /> </td>
+					</tr>
+					<tr>
+						<td><label for="directions">Directions</label></td>
+						</tr>
+					<tr>
+						<td><input class="form-control" type="text" name="directions" th:field="*{directions}" /> </td>
+					</tr>
+					<tr>
+						<td><label for="needsRefill">Refill Needed?</label>
+						<input name="needsRefill" type="checkbox" th:field="*{needsRefill}" /> </td>
+					</tr>
+				</table> 
+	 				<button class="btn btn-secondary" type="submit">Commit</button>
+			</form>
+		</div>
+		<div class="col-4">
+			<img class="addrx" th:src="@{/images/index.jpg}" alt="prescription image">
+		</div>
+	</div>
+</body>
+</html>

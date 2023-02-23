@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+<title>Rx Mgmt Home</title>
+</head>
+<body>
+	<header id="header-home" class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" th:href="@{/home}">Home</a> 
+					<a class="nav-item nav-link" th:href="@{/addrx}">Add Prescription</a>
+					<a class="nav-item nav-link" th:href="@{/pharmacy}">Pharmacy</a>
+					<a class="nav-item nav-link" th:href="@{/viewissues}">Pharmacist Portal</a>
+					<a class="nav-item nav-link" th:href="@{/logout}">Log Out</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+<div class="div w-100 p1">
+	<div class="col">
+	<img class="home" th:src="@{/images/yellowbg.jpg}" alt="prescription image">
+	</div>
+</div>
+
+<div class="row"><h3>Manage current prescriptions</h3></div>
+<div class="col-8"> 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Medication Name</th>
+      <th scope="col">Supply</th>
+ 	  <th scope="col">Last Refill</th>  
+      <th scope="col">Directions</th>                                                	
+    </tr>
+  </thead>
+  <tbody>
+   <tr th:block th:each="medication: ${rxList}">
+		<td th:text="${medication.medicationName}" />
+		<td th:text="${medication.daysSupply}" />
+	 	<td th:text="${medication.refillDate}" />    
+		<td th:text="${medication.directions}" />
+		<td>
+		<a class="h6" th:href="@{'/addrx/update/' + ${medication.id}}"> Update </a>
+		</td>
+		<td>
+		<a class="h6" th:href="@{'/home/delete/' + ${medication.id}}"> Remove </a>
+		</td>
+	</tr>
+  </tbody>
+</table>
+<div class="row" >
+<div class="col">
+<div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+<form role="form" th:action="@{/issue/save}" method="post" th:object="${issue}">
+	<input type="hidden" th:field="*{id}">
+	<table> 
+	<tr>
+		<td>
+		<label for="issueTxt">Report and Issue:    What can we fix?</label> </td>
+		<td> 
+		<input name="issueTxt" class="form-control" type="text" th:field="*{issueTxt}" /> </td>
+		<td>
+		<button class="btn btn-secondary" type="submit">submit</button> </td>
+		</tr>
+	</table>
+</form> 
+</div>
+</div>
+</div>
+
+</body>
+</html>

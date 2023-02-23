@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+<title>Rx Mgmt Refills</title>
+</head>
+<body>
+	<header id="header-home" class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="navbar-nav">
+				
+					<a class="nav-item nav-link active" th:href="@{/refills}">View Refills</a> 
+					<a class="nav-item nav-link" th:href="@{/users}">View Users</a>
+					<a class="nav-item nav-link" th:href="@{/viewissues}">View Issues</a>
+					<a class="nav-item nav-link" th:href="@{/home}">User Portal</a>
+					<a class="nav-item nav-link" th:href="@{/logout}">Log Out</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+<div class="div w-100 p1">
+	<div class="col">
+	<img class="home" th:src="@{/images/yellowbg.jpg}" alt="prescription image">
+	</div>
+</div>
+
+<div class="row">
+<h3>Refills needed</h3>
+<div th:if="${norefills}"> There are no prescriptions needing refills at this time.</div></div>
+<div class="col-8"> 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Medication Name</th>
+      <th scope="col">Supply</th>
+ 	  <th scope="col">Last Refill</th>  
+      <th scope="col">Directions</th>                                                	
+    </tr>
+  </thead>
+  <tbody>
+   <tr th:block th:each="medication: ${refills}">
+		<td th:text="${medication.medicationName}" />
+		<td th:text="${medication.daysSupply}" />
+	 	<td th:text="${medication.refillDate}" />    
+		<td th:text="${medication.directions}" />
+		<td>
+		<a class="h6" th:href="@{'/refills/update/' + ${medication.id}}"> Refill Complete </a>
+	</tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

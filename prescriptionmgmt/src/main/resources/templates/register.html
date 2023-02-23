@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+
+<title>Register New Account</title>
+</head>
+<body>
+	<header id="header-reg" class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" th:href="@{/index}">Welcome</a> <a
+						class="nav-item nav-link" th:href="@{/login}">Login</a> <a
+						class="nav-item nav-link active" th:href="@{/register}">Register New Account</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-10" id="main">
+				<div class="row justify-content-center">
+					<div class="col-3">
+						<img class="reg" th:src="@{/images/index.jpg}" alt="prescription image">
+					</div>
+					<div class="col-5" id="form">
+						<p class="error" th:if="${error}">That email is associated with an existing account</p>
+						<p>
+						<form id="registerForm" method="post" role="form" th:action="@{/register/newuser}"
+							th:object="${user}">
+							<div class="form-group mb-3">
+								<label class="form-label">Full Name</label> <input
+									class="form-control" id="fullName" name="fullName"
+									placeholder="First and Last Name" th:field="*{fullName}"
+									type="text" />
+							</div>
+							<div class="form-group mb-3">
+								<label class="form-label">Email</label> <input
+									class="form-control" id="email" name="email"
+									placeholder="Email" th:field="*{email}" type="email" />
+							</div>
+							<div class="form-group mb-3">
+								<label class="form-label">Password</label> <input
+									class="form-control" id="password" name="password"
+									placeholder="Choose a password" th:field="*{password}"
+									type="password" />
+							</div>
+							<div class="form-group">
+								<button class="btn btn-secondary" type="submit">Register Now</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/script/script.js}"></script>
+</body>
+</html>

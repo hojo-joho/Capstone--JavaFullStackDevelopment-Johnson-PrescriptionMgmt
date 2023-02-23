@@ -1,0 +1,50 @@
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-family: poppins;
+	background-color: powderblue;
+}
+header {
+	margin-bottom: 35px;
+}
+#header-home, #header-issues, #header-logout {
+	margin: 0px;
+}
+h1 {
+	color: black;
+}
+h6 {
+	color:darkblue;
+}
+
+.error {
+	color: darkred;
+	font-size: 12pt;
+}
+img.home, img.issues, img.logout {
+	width: 100%;
+  	height: 20vh;
+  	object-fit: cover;
+}
+table {
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+td {
+	padding-right: 3px;
+	padding-left: 1px;
+}
+
+img.login, img.reg, img.index, img.pharmacy, img.addrx{max-height: 350px;
+	}
+
+p {
+	color: grey;
+	font-size: 12pt;
+}
+input{
+	margin-top:10px;
+}
